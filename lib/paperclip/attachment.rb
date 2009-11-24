@@ -78,9 +78,9 @@ module Paperclip
 
       @queued_for_write[:original]   = uploaded_file.to_tempfile
       # Patch to use mimetype_fu for octet-stream bullshit
-      if uploaded_file.content_type.strip == 'application/octet-stream'
-        uploaded_file.content_type = File.mime_type?(@queued_for_write[:original])
-      end
+      # if uploaded_file.content_type.strip == 'application/octet-stream'
+      uploaded_file.content_type = File.mime_type?(@queued_for_write[:original])
+      # end
 
       instance_write(:file_name,       uploaded_file.original_filename.strip.gsub(/[^A-Za-z\d\.\-_]+/, '_'))
       instance_write(:content_type,    uploaded_file.content_type.to_s.strip)
